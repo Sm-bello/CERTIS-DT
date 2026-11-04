@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use CERTIS-DT in your research, please cite it as below."
+authors:
+  - family-names: "Sani"
+    given-names: "Mohammed Bello"
+    orcid: "https://orcid.org/0009-0000-0000-0000"
+title: "CERTIS-DT: Certification-Ready Intelligent Structural-Swarm Digital Twin Testbed"
+version: 0.1.0
+date-released: 2026-11-04
+url: "https://github.com/Sm-bello/CERTIS-DT"
+keywords:
+  - "digital twins"
+  - "airworthiness certification"
+  - "UAV swarms"
+  - "structural health monitoring"
+  - "uncertainty quantification"
+  - "DO-178C"
+  - "ARP4754B"
+  - "EASA AI Roadmap"

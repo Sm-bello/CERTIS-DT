@@ -1,0 +1,39 @@
+name: Verification Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+
+    - name: Run Unit Tests
+      run: |
+        python -m unittest discover -s tests -p "test_*.py" -v
+
+    - name: Run DO-178C WCET Timing Benchmark
+      run: |
+        python -m certis_dt.cli.main benchmark-surrogate --iterations 1000
+
+    - name: Execute TRL 5 Fault Campaign
+      run: |
+        python -m certis_dt.cli.main fault-campaign
